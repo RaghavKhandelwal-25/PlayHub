@@ -115,7 +115,6 @@ int rockpaper()
             if($=='$'){
                 i++;
             }
-            
         }
         cout << "Do you want to Play again?\nIf yes type Y\n If no type N\n";
                 cin >> PlayAgain;
