@@ -1,7 +1,6 @@
 #include <iostream>
 using namespace std;
 
-
 int coinflip()
 {
     char PlayAgain = 'y';
@@ -40,10 +39,7 @@ int coinflip()
     }
     cout << "Thanks for playing!\n";
     return 0;
-}    
-
-
-
+}
 
 int rockpaper()
 {
@@ -57,7 +53,7 @@ int rockpaper()
         while (i < 4)
         {
             cout << "\nRound " << i << " - Choose any one!" << endl;
-           
+
             cout << "1.Rock\n2.Paper\n3.Scissors" << endl;
             cin >> yourchoice;
 
@@ -109,15 +105,16 @@ int rockpaper()
                     cout << "\nComputer choosed scissor\nIt's a draw!\n";
                 }
             }
-            cout<<"\nPress $ for next round\n";
+            cout << "\nPress $ for next round\n";
             char $;
-            cin>>$;
-            if($=='$'){
+            cin >> $;
+            if ($ == '$')
+            {
                 i++;
             }
         }
         cout << "Do you want to Play again?\nIf yes type Y\n If no type N\n";
-                cin >> PlayAgain;
+        cin >> PlayAgain;
     }
     cout << "Thanks for playing!\n";
     return 0;
@@ -125,13 +122,50 @@ int rockpaper()
 
 
 
-
-
-
-
-
 // void tictactoe();
-// void sevenup();
+
+
+
+
+int sevenup()
+{
+    cout << "It's a 2 dice game!\nChoose weather the sum is Seven Up or Down\n";
+    int a;
+    char PlayAgain = 'y';
+    while (PlayAgain == 'y' || PlayAgain == 'Y')
+    {
+        cout << "1.7 UP\n2.7 DOWN\n";
+        cin >> a;
+        int random_no = (rand() % 11) + 2; // (0 to 10) + 2 → 2 to 12
+        if (random_no > 7)
+        {
+            if (a == 2)
+            {
+                cout << "You guessed it correct!\n";
+            }
+            else
+            {
+                cout << "Oops wrong guess\n";
+            }
+        }
+        else
+        {
+            if (a == 1)
+            {
+                cout << "You guessed it correct!\n";
+            }
+            else
+            {
+                cout << "Oops wrong guess\n";
+            }
+        }
+        cout<<"\nThe number was "<<random_no;
+        cout << "\n\n\nDo you want to Play again?\nIf yes type Y\n If no type N\n";
+        cin >> PlayAgain;
+    }
+    cout << "Thanks for playing!\n";
+    return 0;
+}
 
 int main()
 {
@@ -139,7 +173,7 @@ int main()
     cout << "1. Coin Flip" << endl;
     cout << "2. Rock Papaer Scissor" << endl;
     cout << "3. Tic Tac Toe" << endl;
-    cout << "4. 7 High\n\n"
+    cout << "4. 7 UP or 7 DOWN\n\n"
          << endl;
 
     cout << "Enter your choice" << endl;
@@ -158,7 +192,7 @@ int main()
         // tictactoe();
         break;
     case 4:
-        // sevenup();
+        sevenup();
         break;
     default:
         cout << "Invalid choice. \n Choose between 1-4.\n ";
