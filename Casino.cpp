@@ -1,4 +1,5 @@
 #include <iostream>
+#include<cstdlib>
 using namespace std;
 
 int coinflip()
@@ -15,7 +16,7 @@ int coinflip()
         cin >> yourchoice;
 
         int random_guess = rand() % 2 + 1; // rand->Random Number Generator (1 for head , 2 for tail)
-        cout << "Flipping coin...\n";
+        cout << "\n\nFlipping coin...\n\n";
 
         if (random_guess == 1)
         {
@@ -23,7 +24,7 @@ int coinflip()
         }
         else
         {
-            cout << "It's Tails";
+            cout << "It's Tails\n";
         }
 
         if (yourchoice == random_guess)
@@ -40,6 +41,11 @@ int coinflip()
     cout << "Thanks for playing!\n";
     return 0;
 }
+
+
+
+
+
 
 int rockpaper()
 {
@@ -59,66 +65,53 @@ int rockpaper()
 
             int comp_choice = rand() % 3; // 0->rock 1->paper 2->scissor
             if (yourchoice == 1)
-            { // if player choosed rock
-                if (comp_choice == 0)
-                { // rock = rock
-                    cout << "\nComputer choosed rock\nIt's a draw!\n";
-                }
-                else if (comp_choice == 1)
-                { // rock <paper
-                    cout << "\nComputer choosed paper\nYou loose!\n";
-                }
-                else
-                { // rock>scissor
-                    cout << "\nComputer choosed scissor\nYou Won!\n";
-                }
-            }
-
-            else if (yourchoice == 2)
-            { // if player choosed paper
-                if (comp_choice == 0)
-                { // paper > rock
-                    cout << "\nComputer choosed rock\nYou won!\n";
-                }
-                else if (comp_choice == 1)
-                { // paper =paper
-                    cout << "\nComputer choosed paper\nIt's a draw!\n";
-                }
-                else
-                { // paper<scissor
-                    cout << "\nComputer choosed scissor\nYou Loose!\n";
-                }
-            }
-
-            else if (yourchoice == 3)
-            { // if player choosed scissor
-                if (comp_choice == 0)
-                { // scissor< rock
-                    cout << "\nComputer choosed rock\nYou loose!\n";
-                }
-                else if (comp_choice == 1)
-                { // scissor >paper
-                    cout << "\nComputer choosed paper\nYou won!\n";
-                }
-                else
-                { // scissor=scissor
-                    cout << "\nComputer choosed scissor\nIt's a draw!\n";
-                }
-            }
-            cout << "\nPress $ for next round\n";
-            char $;
-            cin >> $;
-            if ($ == '$')
             {
-                i++;
+                if (comp_choice == 0)
+                    cout << "\nComputer chose rock\nIt's a draw!\n";
+                else if (comp_choice == 1)
+                    cout << "\nComputer chose paper\nYou lose!\n";
+                else
+                    cout << "\nComputer chose scissor\nYou won!\n";
             }
+            else if (yourchoice == 2)
+            {
+                if (comp_choice == 0)
+                    cout << "\nComputer chose rock\nYou won!\n";
+                else if (comp_choice == 1)
+                    cout << "\nComputer chose paper\nIt's a draw!\n";
+                else
+                    cout << "\nComputer chose scissor\nYou lose!\n";
+            }
+            else if (yourchoice == 3)
+            {
+                if (comp_choice == 0)
+                    cout << "\nComputer chose rock\nYou lose!\n";
+                else if (comp_choice == 1)
+                    cout << "\nComputer chose paper\nYou won!\n";
+                else
+                    cout << "\nComputer chose scissor\nIt's a draw!\n";
+            }
+
+            // Askes player for next round only if it's not the last round
+            if (i < 3){
+                cout << "\nPress $ to continue to the next round\n";
+                char next;
+                cin >> next;
+                while (next != '$') {
+                    cout << "Please press $ to continue\n";
+                    cin >> next;
+                }
+            }
+            i++;
         }
-        cout << "Do you want to Play again?\nIf yes type Y\n If no type N\n";
+        cout << "\nThanks for playing!\nDo you want to play again?\nIf yes, type Y\nIf no, type N\n";
         cin >> PlayAgain;
     }
-    cout << "Thanks for playing!\n";
+
+    cout << "Goodbye!\n";
     return 0;
 }
+
 
 
 
@@ -127,45 +120,57 @@ int rockpaper()
 
 
 
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
 int sevenup()
 {
-    cout << "It's a 2 dice game!\nChoose weather the sum is Seven Up or Down\n";
-    int a;
+    srand(time(0)); 
+
+    cout << " Welcome to the 2-Dice Seven Up-Down Game! \n";
     char PlayAgain = 'y';
+
     while (PlayAgain == 'y' || PlayAgain == 'Y')
     {
-        cout << "1.7 UP\n2.7 DOWN\n";
-        cin >> a;
-        int random_no = (rand() % 11) + 2; // (0 to 10) + 2 → 2 to 12
-        if (random_no > 7)
-        {
-            if (a == 2)
-            {
-                cout << "You guessed it correct!\n";
-            }
-            else
-            {
-                cout << "Oops wrong guess\n";
-            }
-        }
+        int choice;
+        cout << "\nMake your guess:\n";
+        cout << "1. 7 UP (sum > 7)\n";
+        cout << "2. 7 DOWN (sum < 7)\n";
+        cout << "3. Exactly 7\n";
+        cout << "Enter your choice (1/2/3): ";
+        cin >> choice;
+
+        cout << "\nPress any key then hit ENTER to roll the dice: ";
+        char rollKey;
+        cin >> rollKey; 
+
+        // dice rolling
+        int die1 = (rand() % 6) + 1;
+        int die2 = (rand() % 6) + 1;
+        int sum = die1 + die2;
+
+        cout << "Value on Die 1 :"<< die1 << "\n"<< "Value on Die 2 :" << die2 << "\n";
+        cout<<"Therefore the sum is:"<<sum<<"\n"<<endl;
+
+        if (sum > 7 && choice == 1)
+            cout << " You guessed it right! It's 7 UP!\n";
+        else if (sum < 7 && choice == 2)
+            cout << " You guessed it right! It's 7 DOWN!\n";
+        else if (sum == 7 && choice == 3)
+            cout << " You guessed it right! It's exactly 7!\n";
         else
-        {
-            if (a == 1)
-            {
-                cout << "You guessed it correct!\n";
-            }
-            else
-            {
-                cout << "Oops wrong guess\n";
-            }
-        }
-        cout<<"\nThe number was "<<random_no;
-        cout << "\n\n\nDo you want to Play again?\nIf yes type Y\n If no type N\n";
+            cout << " Oops! Wrong guess.\n";
+
+        cout << "\nDo you want to play again? (Y/N): ";
         cin >> PlayAgain;
     }
-    cout << "Thanks for playing!\n";
+
+    cout << "\nThanks for playing!\n";
     return 0;
 }
+
 
 int main()
 {
@@ -200,3 +205,9 @@ int main()
     }
     return 0;
 }
+
+
+
+//if player plays a game and go back to other game to we have to create a menu for it
+//and point system
+//leaderboard to hold the top score(optional)
