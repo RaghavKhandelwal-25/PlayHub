@@ -1,7 +1,9 @@
 #include <iostream>
 #include<cstdlib>
+#include <ctime>
 using namespace std;
 
+//-----------------------------------------------------------coinflip------------------------------------------------------------
 int coinflip()
 {
     char PlayAgain = 'y';
@@ -46,7 +48,7 @@ int coinflip()
 
 
 
-
+//-------------------------------------------------------------------Rockpaper---------------------------------------------------
 int rockpaper()
 {
     int yourchoice;
@@ -113,18 +115,7 @@ int rockpaper()
 }
 
 
-
-
-// void tictactoe();
-
-
-
-
-#include <iostream>
-#include <cstdlib>
-#include <ctime>
-using namespace std;
-
+//----------------------------------------------------------------------Sevenup-----------------------------------------------
 int sevenup()
 {
     srand(time(0)); 
@@ -172,42 +163,108 @@ int sevenup()
 }
 
 
+
+//--------------------------------------------------Balance---------------------------------------------------------------
+void current_balance(int balance)
+{
+    cout << "Your current balance: " << balance << " coins\n";
+}
+
+//---------------------------------------------------Instructions--------------------------------------------------------
+void instructions() {
+    cout << "\n--- Instructions ---\n";
+    cout << "- Start with 1000 coins.\n";
+    cout << "- Winning gives double the bid.\n";
+    cout << "- Losing costs the bid.\n";
+}
+
+//---------------------------------------------------Menu----------------------------------------------------------------
+int menu()
+{
+    int menu_choice;
+    cout << "\n------ MENU ------\n";
+    cout << "1. Play Games\n";
+    cout << "2. Read Instructions\n";
+    cout << "3. Check Balance\n";
+    cout << "4.Exit Game\n";
+    cout << "Enter your choice: ";
+    cin >> menu_choice;
+    return menu_choice;
+}
+
+
+
+//--------------------------------------------------------------Main--------------------------------------------------------------
 int main()
 {
+    int balance=1000;
+    
+    
     cout << "Welcome to PlayHub\n\n";
-    cout << "1. Coin Flip" << endl;
-    cout << "2. Rock Papaer Scissor" << endl;
-    cout << "3. Tic Tac Toe" << endl;
-    cout << "4. 7 UP or 7 DOWN\n\n"
+   
+
+    int menu_choice;
+    int switch_choice;
+    while(menu_choice!=4){
+        switch_choice=menu();
+//-------------------------------------------------------------------menu switch case--------------------------------------------------------
+        switch (switch_choice)
+    {
+    case 1://Games
+        cout << "1. Coin Flip\n Bid-100 coins" << endl;
+    cout << "2. Rock Papaer Scissor\n Bid-300 coins" << endl;
+    
+    cout << "3. 7 UP or 7 DOWN\n Bid-200 coins\n"
+    <<"4.Exit"
          << endl;
 
     cout << "Enter your choice" << endl;
-    int choice;
-    cin >> choice;
+    int game_choice;
+    cin >> game_choice;
+        while(game_choice!=4){
 
-    switch (choice)
-    {
-    case 1:
+//-----------------------------------------------------------------game switch case-----------------------------------------------------------
+            switch(game_choice){
+        case 1:
         coinflip();
         break;
     case 2:
         rockpaper();
         break;
     case 3:
-        // tictactoe();
-        break;
-    case 4:
         sevenup();
         break;
+    case 4://exit
+         break;       
     default:
         cout << "Invalid choice. \n Choose between 1-4.\n ";
         break;
-    }
+        }
+        }
+    break;
+//--------------------------------------------------------------------------------------------------------------------------------------------
+        case 2:
+        instructions();
+        break;
+
+        case 3:
+        current_balance(balance);
+        break;
+
+        case 4:
+         cout << "Thanks for playing! \n";
+                break;
+
+       
+    }}
+ //---------------------------------------------------------------------------------------------------------------------------------------------   
     return 0;
 }
-
 
 
 //if player plays a game and go back to other game to we have to create a menu for it
 //and point system
 //leaderboard to hold the top score(optional)
+//credit 
+//deducted
+//request for extra coin when balance becomes zero
