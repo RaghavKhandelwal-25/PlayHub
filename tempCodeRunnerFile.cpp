@@ -70,7 +70,7 @@ int rockpaper(int &balance)
     int yourchoice;
     cout << "\nIt's a 3 round game\n";
 
-    char PlayAgain = 'y';
+    int PlayAgain = 'y';
     while (PlayAgain == 'y' || PlayAgain == 'Y')
     {
         if (balance < 300)
@@ -271,7 +271,6 @@ int main()
         switch (switch_choice)
         {
         case 1: // Games
-        {
             int game_choice = 0;
             while (game_choice != 4)
             {
@@ -302,7 +301,6 @@ int main()
                 }
             }
             break;
-            }
             //--------------------------------------------------------------------------------------------------------------------------------------------
         case 2:
             instructions();
